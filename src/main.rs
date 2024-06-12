@@ -18,7 +18,7 @@ const DEFAULT_RPC_URL: &str = "https://eth.merkle.io";
 /// Default filename for output checkpoint file
 const DEFAULT_OUTPUT_PATH: &str = ".cfmms-checkpoint.json";
 
-/// CLI parameters
+/// `mkcheckpoint` is a utility for producing checkpoints of AMM state from CSV data
 #[derive(Parser)]
 struct Opts {
     /// URL to the Ethereum RPC provider
