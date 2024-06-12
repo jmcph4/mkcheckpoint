@@ -12,14 +12,21 @@ use crate::spec::CheckpointSpecification;
 mod spec;
 mod variant;
 
+/// URL of the default RPC provider
 const DEFAULT_RPC_URL: &str = "https://eth.merkle.io";
+
+/// Default filename for output checkpoint file
 const DEFAULT_OUTPUT_PATH: &str = ".cfmms-checkpoint.json";
 
+/// CLI parameters
 #[derive(Parser)]
 struct Opts {
+    /// URL to the Ethereum RPC provider
     #[clap(short, long)]
     rpc: Option<Url>,
+    /// Path to the input CSV file
     r#in: PathBuf,
+    /// Path to write the output checkpoint JSON file to
     out: Option<PathBuf>,
 }
 

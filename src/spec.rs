@@ -1,3 +1,4 @@
+//! Logic and types for checkpoint specification
 use std::{path::Path, sync::Arc};
 
 use alloy::primitives::{Address, BlockNumber};
@@ -14,8 +15,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::variant::AmmVariant;
 
+/// Default fee for AMM pools
 pub const DEFAULT_FEE: u32 = 300;
 
+/// Represents a single row of CSV
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct SpecificationEntry {
     pub variant: AmmVariant,
@@ -25,6 +28,7 @@ pub struct SpecificationEntry {
 }
 
 impl SpecificationEntry {
+    /// Retrieves both the associated AMM factory and pool for this [`SpecificationEntry`]
     async fn fetch(
         &self,
         provider: Arc<ReqwestProvider>,
@@ -63,10 +67,12 @@ impl SpecificationEntry {
     }
 }
 
+/// Represents a sequence of CSV rows
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CheckpointSpecification(pub Vec<SpecificationEntry>);
 
 impl CheckpointSpecification {
+    /// Reads a [`CheckpointSpecification`] from disk
     pub fn load<P>(path: P) -> eyre::Result<Self>
     where
         P: AsRef<Path>,
@@ -78,6 +84,8 @@ impl CheckpointSpecification {
         ))
     }
 
+    /// Retrieves the entire set of AMM factories and pools specified in this
+    /// [`CheckpointSpecification`]
     pub async fn fetch(
         &self,
         provider: Arc<ReqwestProvider>,
