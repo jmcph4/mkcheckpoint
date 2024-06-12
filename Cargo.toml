@@ -1,0 +1,36 @@
+[package]
+name = "mkcheckpoint"
+version = "0.1.0"
+description = "Generate amms-rs-style checkpoints"
+edition = "2021"
+
+[dependencies]
+amms = { git = "https://github.com/darkforestry/amms-rs", rev = "7d9980a" }
+alloy = { git = "https://github.com/alloy-rs/alloy", rev = "dd7a999", features = [
+    "contract",
+    "network",
+    "providers",
+    "rpc",
+    "rpc-types",
+    "rpc-types-eth",
+    "transports",
+    "provider-http",
+    "provider-ws",
+    "rpc-client",
+    "pubsub",
+    "rpc",
+    "node-bindings",
+    "transport-ws",
+    "reqwest",
+    "serde",
+    "getrandom",
+] }
+eyre = "^0.6.0"
+csv = "^1.0.0"
+clap = { version = "4.5.4", features = ["derive"] }
+futures = "0.3.30"
+log = "0.4.21"
+pretty_env_logger = "0.5.0"
+tokio = { version = "^1.0", features = ["full"] }
+serde = { version = "1.0.197", features = ["derive"] }
+url = "2.5.0"
