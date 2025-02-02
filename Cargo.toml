@@ -1,6 +1,6 @@
 [package]
 name = "mkcheckpoint"
-version = "0.1.0"
+version = "0.2.0"
 description = "A small tool for generating state snapshots of AMM pools"
 edition = "2021"
 
